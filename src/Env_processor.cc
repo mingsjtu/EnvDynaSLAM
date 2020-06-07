@@ -9,9 +9,9 @@ namespace ORB_SLAM2
                                 mnMinX(0.0), mnMaxX(nMaxX), mnMinY(0.0), mnMaxY(nMaxY), menvnum(0), mbinitOK(false), msetcount(0)
     {
         miminHession = 1000;
-        mpdetector = cv::xfeatures2d::SIFT::create(miminHession); //和surf的区别：只是SURF→SIFT
-        // SiftDescriptorExtractor extractor;
-        mpextractor = cv::xfeatures2d::SIFT::create();
+        mpdetector = cv::xfeatures2d::SURF::create(miminHession); //和surf的区别：只是SURF→SURF
+        // SURFDescriptorExtractor extractor;
+        mpextractor = cv::xfeatures2d::SURF::create();
         mpmatcher = new cv::BFMatcher(cv::NORM_L2, true); // 暴风匹配
         fx = mK.at<float>(0, 0);
         fy = mK.at<float>(1, 1);

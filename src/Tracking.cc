@@ -485,9 +485,9 @@ namespace ORB_SLAM2
                         if (mpEnv_processor->set_Envpose(img_move, img_env, Renvc, tenvc, H21, H12, mCurrentFrame.mK, mCurrentFrame.mK, mpSystem->msmove_dir))
                         {
                             printf("KF20 set OK\n");
-                            if (menvFrequence < 20)
+                            if (menvFrequence < 5)
                             {
-                                menvFrequence = 20;
+                                menvFrequence = 5;
                             }
                             mpEnv_processor->set_pose(mCurrentFrame.mTcw, H21);
                         }
@@ -747,13 +747,23 @@ namespace ORB_SLAM2
         }
 
         // Scale points
-        vector<MapPoint *> vpAllMapPoints = pKFini->GetMapPointMatches();
+        vector<MapPoint*> vpAllMapPoints = pKFini->GetMapPointMatches();
+        for(size_t iMP=0; iMP<vpAllMapPoints.size(); iMP++)
+        {
+            if(vpAllMapPoints[iMP])
+            {
+                MapPoint* pMP = vpAllMapPoints[iMP];
+                pMP->SetWorldPos(pMP->GetWorldPos()*invMedianDepth);
+            }
+        }
         //scale以前还是以后，isDynamic投影的结果一样
 
         // Scale initial baseline
         cv::Mat Tc2w = pKFcur->GetPose();
         Tc2w.col(3).rowRange(0, 3) = Tc2w.col(3).rowRange(0, 3) * invMedianDepth;
         pKFcur->SetPose(Tc2w);
+        cout<<"init Tcw"<<pKFcur->GetPose()<<endl;
+
 
         //env init
         cout << mpSystem->msenv_dir << endl;
@@ -767,17 +777,17 @@ namespace ORB_SLAM2
         if (mpEnv_processor->set_Envpose(img_move, img_env, R_env, t_env, H12_env, H21_env, mK, mK, mpSystem->msmove_dir))
         {
 
-            if (menvFrequence < 20)
+            if (menvFrequence < 5)
             {
                 menvFrequence = 20;
             }
             cv::Mat Tenvw = cv::Mat::eye(4, 4, CV_32F);
             mpEnv_processor->set_pose(Tenvw, H21_env);
         }
-        vector<cv::KeyPoint> Env_vKeys;
-        vector<cv::KeyPoint> move_vKeys;
-        vector<cv::DMatch> Env_vmatches;
-        int Env_count = 0;
+        // vector<cv::KeyPoint> Env_vKeys;
+        // vector<cv::KeyPoint> move_vKeys;
+        // vector<cv::DMatch> Env_vmatches;
+        // int Env_count = 0;
 
         // for (size_t iMP = 0; iMP < vpAllMapPoints.size(); iMP++)
         // {
