@@ -8,13 +8,25 @@ So it's called **EnvDynaSLAM**.
 This is a part of the code of my undergraduate project in Shanghai Jiaotong University,"Improvement of Indoor Positioning Technology Based on SLAM--Research on the Problem of Dynamic Point Culling" . 
 
 **The other part is dedicated to the using MaskRCNN to help with dynamic point removal and only KF segment to speed up,called [KFDynaSLAM](https://github.com/mingsjtu/ORB-SLAM_MaskRCNN_KeyFrame)**. If there is any error, please pull issues or contact mingsjtu@163.com
+The graduation design of this job is rated A+.
+For the convenience of readers’ understanding, the English abstract of the graduation design thesis is attached for reference (due to the school's graduation thesis handling regulations, the original text cannot be released temporarily, please understand)
+If it helps, please quote in the following format, thank you.
 
+郭铭.基于 SLAM 的室内定位技术改进[D].上海：上海交通大学电子信息与电气工程学院，2020.
 
 EnvDynaSLAM是一个为解决SLAM中的动态点去除问题而做的单目SLAM系统。我选用一个环境中摄像头以辅助动态点的去除。实验结果表明，该系统相比ORBSLAM会带来精度的提升，相比基于深度学习的动态SLAM运行的非常快。基础系统是ORBSLAM。
 
 因此，我称他为**EnvDynaSLAM**。
 
-这是我在上海交通大学做的本科毕设项目《基于SLAM的室内定位技术改进--对环境中动态点去除问题的研究》的代码的一部分，另一部分致力于通过Mask RCNN进行动态点去除并通过只分割关键帧进行了加速，**[KFDynaSLAM](https://github.com/mingsjtu/ORB-SLAM_MaskRCNN_KeyFrame)**。如有错误，欢迎 pull issues 或者联系mingsjtu@163.com
+这是我在上海交通大学做的本科毕设项目《基于SLAM的室内定位技术改进--对环境中动态点去除问题的研究》的代码的一部分，另一部分致力于通过Mask RCNN进行动态点去除并通过只分割关键帧进行了加速，**[KFDynaSLAM](https://github.com/mingsjtu/ORB-SLAM_MaskRCNN_KeyFrame)**。如有错误，欢迎 pull issues 或者联系mingsjtu@163.com**
+这项工作毕业设计总评为A+。
+
+
+为方便读者理解，附毕业设计论文的英文大摘要以供参考（由于校毕业论文办理规章所限，暂无法公开原文，请谅解）
+如有帮助，请按照以下格式引用，谢谢。
+
+郭铭.基于 SLAM 的室内定位技术改进[D].上海：上海交通大学电子信息与电气工程学院，2020.
+
 
 
 Below is a demo screen shot when the EnvDynaSLAM is trying to processing a video taken in my house.
